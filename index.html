@@ -681,8 +681,33 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content p-4" style="height:100%">
                         <!-- rsvp form -->
-                        <rsvp-component :lang="{&quot;invitation_code&quot;:&quot;Kode Undangan&quot;,&quot;validate_code&quot;:&quot;Validasi Kode Undangan&quot;,&quot;name&quot;:&quot;Nama&quot;,&quot;group_name&quot;:&quot;Nama Grup&quot;,&quot;phone&quot;:&quot;No Hp \/ WhatsApp&quot;,&quot;attendance&quot;:&quot;Kehadiran?&quot;,&quot;yes&quot;:&quot;Hadir&quot;,&quot;no&quot;:&quot;Tidak Hadir&quot;,&quot;guest&quot;:&quot;Orang&quot;,&quot;guest_count&quot;:&quot;Jumlah Tamu&quot;,&quot;comment&quot;:&quot;Komentar atau Ucapan&quot;,&quot;send&quot;:&quot;Kirim&quot;,&quot;update&quot;:&quot;Kirim&quot;,&quot;captcha_placeholder&quot;:&quot;Ketik Text&quot;}" :invitation_id="729151" name="Nama Tamu" code="" :replace="false" overlay="1"></rsvp-component>
-                        <!-- rsvp form -->
+                      <div class="container mt-4">
+                        <div class="card p-4 shadow-sm" style="border-radius: 15px; border: 1px solid var(--inv-border);">
+                            <h4 class="text-center mb-4">Konfirmasi Kehadiran</h4>
+                            <form id="rsvpForm">
+                                <div class="form-group mb-3">
+                                    <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <select name="kehadiran" class="form-control" required>
+                                        <option value="">Konfirmasi Kehadiran</option>
+                                        <option value="Hadir">Hadir</option>
+                                        <option value="Tidak Hadir">Tidak Hadir</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="number" name="jumlah" class="form-control" placeholder="Jumlah Orang">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <textarea name="ucapan" class="form-control" placeholder="Ucapan & Doa" rows="3"></textarea>
+                                </div>
+                                <button type="submit" id="btnKirim" class="btn btn-primary w-100">Kirim Konfirmasi</button>
+                            </form>
+                            <div id="rsvp-message" style="display:none;" class="alert alert-success mt-3 text-center">
+                                Terima kasih! Ucapan Anda telah terkirim.
+                            </div>
+                        </div>
+                    </div>
                         <button onclick="closeModal(rsvpModal)" type="button" class="btn btn-close">
                             <svg xmlns="http://www.w3.org/2000/svg" height="42px" width="42px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/>
@@ -841,6 +866,23 @@
                 }
             });
         </script>
+        // Tambahkan elemen audio di dalam body jika belum ada
+// <audio id="audio" loop src="link-musik-anda.mp3"></audio>
+
+const btnOpen = document.querySelector('.btn-open-invitation');
+const audio = document.getElementById('audio');
+
+if (btnOpen) {
+    btnOpen.addEventListener('click', function() {
+        // Memutar musik saat tombol diklik
+        if (audio) {
+            audio.play().catch(error => console.log("Autoplay dicegah: ", error));
+        }
+        
+        // Logika membuka undangan lainnya...
+        document.getElementById('satuMomen').style.display = 'block';
+    });
+}
         <script></script>
         <script defer src="static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"914ea876ce4545f884af0de8ca6bc03d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
     </body>
